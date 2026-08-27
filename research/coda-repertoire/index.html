@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Categorical Structure in a Sperm Whale Coda Repertoire: A Replication with Transparent Methods — Teagan Keely Smith</title>
+  <meta name="description" content="A replication of a 2024 Nature Communications result on categorical coda types, using deliberately simple methods over Project CETI's 1,501-coda Dominica corpus. Click detection from raw audio, compositional statistics, and a mostly negative result. Python, scipy, scikit-learn." />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Categorical Structure in a Sperm Whale Coda Repertoire: A Replication with Transparent Methods — Teagan Keely Smith" />
+  <meta property="og:url" content="https://teaganksmith.github.io/research/coda-repertoire/" />
+  <meta property="og:image" content="https://teaganksmith.github.io/images/research/coda-repertoire-test.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://teaganksmith.github.io/research/coda-repertoire/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/main.css?v=2" />
+
+  <style>
+    .project-figure { margin: var(--space-4) 0; }
+    .project-figure img {
+      width: 100%; height: auto; display: block;
+      border: 0.5px solid var(--color-border);
+      border-radius: var(--radius-card);
+      background: var(--color-bg-secondary);
+    }
+    .project-figure figcaption {
+      font-size: 0.8125rem; line-height: 1.6;
+      color: var(--color-text-muted);
+      margin-top: var(--space-2); max-width: var(--reading-width);
+    }
+    .project-figure figcaption strong { color: var(--color-text); font-weight: 500; }
+    .finding-list { line-height: 1.75; padding-left: 1.1rem; margin: 0; }
+    .finding-list li { margin-bottom: var(--space-2); }
+    .finding-list li::marker { color: var(--color-accent); }
+    .callout {
+      background: var(--color-bg-secondary);
+      border-left: 2px solid var(--color-accent);
+      border-radius: var(--radius-btn);
+      padding: var(--space-3);
+      line-height: 1.7;
+    }
+    .table-wrap { overflow-x: auto; margin: var(--space-3) 0 0; }
+    .data-table {
+      border-collapse: collapse; width: 100%;
+      font-family: var(--font-body); font-size: 0.8125rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .data-table th, .data-table td {
+      text-align: right; padding: 0.5rem 0.75rem;
+      border-bottom: 0.5px solid var(--color-border); white-space: nowrap;
+    }
+    .data-table th:first-child, .data-table td:first-child { text-align: left; }
+    .data-table thead th {
+      font-size: 0.6875rem; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--color-text-muted); font-weight: 500;
+      border-bottom: 1px solid var(--color-text);
+    }
+    .data-table tbody tr.is-flagged { background: var(--color-sage-bg); }
+    .data-table tbody tr.is-flagged td { color: var(--color-sage-text); font-weight: 500; }
+    .table-note {
+      font-size: 0.8125rem; color: var(--color-text-muted);
+      line-height: 1.6; margin-top: var(--space-2); max-width: var(--reading-width);
+    }
+  </style>
+</head>
+<body class="project-page">
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../../" class="nav-logo">Teagan Keely Smith</a>
+      <ul class="nav-links" role="list">
+        <li><a href="../../research/" class="active">Research</a></li>
+        <li><a href="../../cv/">CV</a></li>
+        <li><a href="../../writing/">Writing</a></li>
+        <li class="nav-dropdown">
+          <a href="../../art/" class="nav-dropdown-toggle">Creative Projects <span class="nav-dropdown-arrow">▾</span></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="../../art/">Biological Illustration &amp; Oil</a></li>
+            <li><a href="../../art/photography/">Photography &amp; Videography</a></li>
+            <li><a href="../../art/fishie/">Fishie — Game</a></li>
+          </ul>
+        </li>
+        <li><a href="../../contact/">Contact</a></li>
+      </ul>
+      <button class="nav-hamburger" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <nav class="nav-overlay" aria-label="Mobile navigation" aria-hidden="true">
+    <button class="nav-close" aria-label="Close navigation menu">✕</button>
+    <a href="../../">Home</a>
+    <a href="../../research/" class="active">Research</a>
+    <a href="../../cv/">CV</a>
+    <a href="../../writing/">Writing</a>
+    <a href="../../art/">Creative Projects</a>
+    <a href="../../contact/">Contact</a>
+  </nav>
+
+  <main>
+    <div style="max-width:var(--max-width);margin:0 auto;padding:var(--space-8) var(--space-3);">
+
+      <a href="../../research/" class="back-link">← Research</a>
+
+      <div class="project-header">
+        <div class="project-meta-row">
+          <span class="pill pill-status-complete">Complete</span>
+          <span class="pill">Python</span>
+          <span class="pill">Raven</span>
+          <span class="pill">Signal Processing</span>
+          <span class="pill">Unsupervised Clustering</span>
+        </div>
+
+        <h1 style="font-family:var(--font-display);font-size:clamp(1.6rem,3vw + 0.5rem,2.4rem);font-weight:400;line-height:1.2;margin-bottom:var(--space-2);">
+          Categorical Structure in a Sperm Whale Coda Repertoire: A Replication with Transparent Methods
+        </h1>
+
+        <p style="font-size:0.9rem;color:var(--color-text-muted);">
+          Summer 2026 · Self-directed
+        </p>
+      </div>
+
+      <div class="project-section">
+        <p class="project-section-label">Project Overview</p>
+        <p style="line-height:1.75;">
+          Sperm whales (<em>Physeter macrocephalus</em>) exchange codas, short patterns of three to twenty clicks, as social signals. What distinguishes one coda from another is the timing rather than the sound: coda type is defined by the pattern of intervals between clicks. Coda repertoires differ between vocal clans, which makes them a marker of social structure as well as a communication system. Measuring inter-click intervals accurately is therefore the whole of the analysis.
+        </p>
+        <p style="line-height:1.75;margin-top:var(--space-2);">
+          The field describes these repertoires as inventories of discrete types, and Sharma et al. 2024 (<em>Nature Communications</em>) argued from this corpus that the types are categorical rather than points on a continuum. This project asked a narrower question: how much of that structure is recoverable from raw audio using the simplest transparent toolkit available, and where do those simple methods fail. It is framed as a replication and robustness check, not as a new finding, a framing that was itself imposed by adversarial review after the first draft overstated the study's novelty.
+        </p>
+      </div>
+
+      <div class="project-section">
+        <p class="project-section-label">Process</p>
+        <ul class="finding-list">
+          <li>Built a detection pipeline from raw audio and validated it against synthetic click trains with known inter-click intervals before applying it to any recording, achieving a worst-case timing error of 0.44 ms and no false positives on noise.</li>
+          <li>Diagnosed an echo double-counting fault from waveform inspection after per-file click counts came back inflated, then validated the correction on synthetic mixtures of clicks and injected echoes.</li>
+          <li>Submitted the completed analysis to an adversarial review pass that checked each factual claim against the primary literature and attacked the statistics. That pass corrected the study's framing, imposed a compositional correction on the geometry, and identified a preprocessing artefact that is now disclosed as a limitation.</li>
+          <li>Wrote a verification script that regenerates every published value directly from the corpus, so that the results table can be checked rather than taken on trust.</li>
+        </ul>
+      </div>
+
+      <div class="project-section">
+        <p class="project-section-label">Method</p>
+        <ul class="finding-list">
+          <li>Zero-phase bandpass filtering across 2 to 20 kHz. A causal filter introduces a group delay that displaces click times, which is the quantity under measurement.</li>
+          <li>Detection threshold referenced to a median absolute deviation estimate of the noise floor. Clicks are outliers by definition and would inflate a standard deviation estimate of the floor against which they are measured.</li>
+          <li>Detections closer than 60 ms merged, retaining the strongest peak, to absorb surface-reflection echoes and the multipulse structure internal to each click.</li>
+          <li>Duration-normalised interval vectors transformed by centred log-ratio before clustering, because rhythm fractions sum to one and both Euclidean k-means and a naive column permutation mishandle the simplex.</li>
+          <li>Two independent tests per click-count class: a best k-means silhouette scored against 200 permutation surrogates, and a Gaussian mixture selected by BIC, which unlike silhouette is permitted to prefer a single component.</li>
+        </ul>
+      </div>
+
+      <figure class="project-figure">
+        <img src="../../images/research/coda-repertoire-test.png" alt="Four panels. A: three-click rhythm space with three k-means clusters lying along a single continuous line. B: observed silhouette score far to the right of a 200-permutation null distribution. C: eleven-click rhythm profiles in which one cluster contains only three outlier files. D: observed silhouette against the null across all click-count classes, with a sharp spike at eleven clicks." />
+        <figcaption>
+          <strong>The disqualified result carries the argument.</strong> Panel C shows the most statistically striking finding of the run, a silhouette of 0.59 at p = 0.005, which proved on inspection to be an 86-against-3 split driven by three outlier files with one long final interval. A significance test cannot detect that; plotting the clusters can. Panel A shows the same failure mode more quietly, with three clean-looking clusters that are one continuum being segmented.
+        </figcaption>
+      </figure>
+
+      <div class="project-section">
+        <p class="project-section-label">Result</p>
+        <ul class="finding-list">
+          <li>Of ten click-count classes, only the four-click class shows categorical structure that both tests agree on, with an observed silhouette of 0.465 against a null 95th percentile of 0.298 and a mixture model selecting three components at a BIC difference of 70.</li>
+          <li>The silhouette test alone would have declared discrete types in seven classes. The mixture model dissents in six of them, and visual inspection of the three-click rhythm space supports that dissent: much of what k-means partitions there is a continuum being segmented rather than separated modes.</li>
+          <li>The most statistically striking result of the run, a silhouette of 0.59 at p = 0.005, proved on inspection to be an 86-against-3 split driven by three outlier files with one long final interval. A significance test cannot detect that. Plotting the clusters can, and the result was disqualified.</li>
+          <li>The methodological finding is the substantive one. With simple unsupervised tools applied to detection-derived intervals, discrete coda types are easy to produce and difficult to confirm. The published categorical result rests on richer methods and behavioural context, and this replication indicates why that additional structure was necessary.</li>
+        </ul>
+      </div>
+
+      <div class="project-section">
+        <p class="project-section-label">Corpus Accounting</p>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th scope="col">Disposition</th><th scope="col">Files</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Total in corpus</td><td>1,501</td></tr>
+              <tr><td>Fewer than two detectable clicks</td><td>120</td></tr>
+              <tr><td>Fewer than three clicks</td><td>70</td></tr>
+              <tr><td>More than twelve clicks, probable overlapping animals</td><td>130</td></tr>
+              <tr><td>Longer than 2.5 s</td><td>2</td></tr>
+              <tr class="is-flagged"><td>Analysed</td><td>1,179</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">
+          Excluded files are counted rather than silently dropped. The 1,179 retained codas yield 7,253 inter-click intervals. The retained sample plausibly over-represents loud, clean recordings, which is recorded as a limitation.
+        </p>
+      </div>
+
+      <div class="project-section">
+        <p class="project-section-label">What This Means</p>
+        <p style="line-height:1.75;">
+          <strong>Sperm whales appear to have something like a vocabulary, and the question is how sharply its
+          entries are separated.</strong> A coda is a short drum-roll of clicks, and what distinguishes one from
+          another is the rhythm rather than the sound. Families and clans share rhythms, so a coda repertoire
+          works partly as a badge of belonging. Whether those rhythms fall into clean categories, the way the
+          sounds of a spoken language do, or blend continuously into one another, changes what kind of
+          communication system this is.
+        </p>
+        <p style="line-height:1.75;margin-top:var(--space-2);">
+          <strong>With simple tools, the categories are mostly not there to be found.</strong> Nine of the ten
+          groups tested here show structure under one method and none under a second, more cautious one. Only
+          codas of four clicks give an answer both methods accept. That does not overturn the published result,
+          which used richer methods and knew what the whales were doing at the time. It shows how much of that
+          published structure depends on the sophistication of the method, and how easily a straightforward
+          clustering algorithm will carve a smooth continuum into tidy-looking groups when asked to.
+        </p>
+        <p style="line-height:1.75;margin-top:var(--space-2);">
+          <strong>The most instructive result is one that was thrown away.</strong> The strongest statistical
+          signal in the entire analysis came from three recordings out of eighty-nine, each with one unusually
+          long pause near the end. A significance test cannot see that; it reports a small, confident number
+          either way. Plotting the groups makes it obvious in seconds. For anyone building datasets that
+          machine-learning systems will later train on, this is the practical lesson: a label is only as good as
+          the look someone took at it.
+        </p>
+      </div>
+
+      <div class="project-section">
+        <p class="project-section-label">Reproducibility and Annotation</p>
+        <p style="line-height:1.75;">
+          A verification script rebuilds the full results table from the corpus. All ten click-count classes reproduce exactly, together with the corpus accounting and the interval count. The repository also includes an annotation protocol written for onboarding a second annotator, a stratified twenty-file review bundle with pre-drawn Raven selection tables, and a scoring script that computes detector precision, recall and timing error against human-reviewed labels. Half the bundle consists of files where the pipeline had to merge echoes, which are the cases where a human and an automated detector are most likely to disagree.
+        </p>
+      </div>
+
+      <div class="project-section">
+        <p class="project-section-label">Tooling and Provenance</p>
+        <p style="line-height:1.75;">
+          This project was built with AI assistance. The framing, the methodological choices and the decision to
+          report a largely negative result are mine. An adversarial review pass, run against the primary
+          literature, corrected the study's framing from a novel question to a replication, imposed the
+          compositional correction on the clustering geometry, and identified a preprocessing artefact that is
+          disclosed above rather than quietly removed.
+        </p>
+      </div>
+
+      <div class="project-section">
+        <p class="project-section-label">Limitations</p>
+        <div class="callout">
+          <p style="margin:0;">
+            The 60 ms merge window censors the fast tail of the interval distribution. The empirical minimum sits at exactly that window and 8 per cent of intervals fall below 80 ms, so the preprocessing removes part of the signal it is measuring. Detections are automated and have not been validated by an expert annotator. Silhouette power declines with dimensionality, so a null result in the longer-coda classes cannot distinguish absent structure from an underpowered test. The study tests rhythm only, whereas the published categorical claim rests on rhythm together with tempo and exchange context. The corpus covers a single vocal clan, so nothing generalises beyond Dominica.
+          </p>
+        </div>
+      </div>
+
+      <div class="project-section">
+        <p class="project-section-label">Methods &amp; Tools</p>
+        <div style="display:flex;gap:var(--space-1);flex-wrap:wrap;margin-top:var(--space-1);">
+          <span class="pill">Python</span>
+          <span class="pill">NumPy</span>
+          <span class="pill">SciPy</span>
+          <span class="pill">scikit-learn</span>
+          <span class="pill">Raven</span>
+          <span class="pill">Digital Signal Processing</span>
+          <span class="pill">k-Means</span>
+          <span class="pill">Gaussian Mixture Models</span>
+          <span class="pill">Permutation Testing</span>
+          <span class="pill">Compositional Data Analysis</span>
+        </div>
+      </div>
+
+      <div class="project-section">
+        <p class="project-section-label">Data &amp; Sources</p>
+        <p style="font-size:0.875rem;color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-1);">
+          Audio: Dominica Sperm Whale Project corpus released via Project CETI, 1,501 isolated codas recorded 2005 to 2018, single vocal clan, CC BY 4.0. Repertoire methods after Rendell &amp; Whitehead 2003, <em>Bioacoustics</em> 15, and vocal clans after Rendell &amp; Whitehead 2003, <em>Proceedings of the Royal Society B</em> 270. Clan repertoire composition after Gero, Whitehead &amp; Rendell 2016, <em>Royal Society Open Science</em> 3. Categorical result under replication: Sharma et al. 2024, <em>Nature Communications</em>. Multipulse click structure after Bøttcher et al. 2018, <em>JASA</em>. Raven Sound Software, Cornell Lab of Ornithology.
+        </p>
+      </div>
+
+      <div style="margin-top:var(--space-8);padding-top:var(--space-4);border-top:0.5px solid var(--color-border);display:flex;gap:var(--space-3);flex-wrap:wrap;">
+        <a href="../../research/" class="btn btn-secondary btn-sm">← All research</a>
+        <a href="../flight-call-contagion/" class="btn btn-secondary btn-sm">Next project →</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <span class="footer-name">Teagan Keely Smith</span>
+      <span class="footer-copyright">© 2026</span>
+    </div>
+  </footer>
+
+</body>
+</html>

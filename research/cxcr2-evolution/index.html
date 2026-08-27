@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CXCR2 Cetacean Protein Evolution — Teagan Keely Smith</title>
+  <meta name="description" content="Evidence of purifying selection in CXCR2 reveals differences in cetacean rate of protein evolution. EEB460, University of Toronto, 2023." />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="CXCR2 Cetacean Protein Evolution — Teagan Keely Smith" />
+  <meta property="og:url" content="https://teaganksmith.github.io/research/cxcr2-evolution/" />
+  <meta property="og:image" content="https://teaganksmith.github.io/images/og-default.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://teaganksmith.github.io/research/cxcr2-evolution/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/main.css?v=2" />
+</head>
+<body class="project-page">
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../../" class="nav-logo">Teagan Keely Smith</a>
+      <ul class="nav-links" role="list">
+        <li><a href="../../research/" class="active">Research</a></li>
+        <li><a href="../../cv/">CV</a></li>
+        <li><a href="../../writing/">Writing</a></li>
+        <li class="nav-dropdown">
+          <a href="../../art/" class="nav-dropdown-toggle">Creative Projects <span class="nav-dropdown-arrow">▾</span></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="../../art/">Biological Illustration &amp; Oil</a></li>
+            <li><a href="../../art/photography/">Photography &amp; Videography</a></li>
+            <li><a href="../../art/fishie/">Fishie — Game</a></li>
+          </ul>
+        </li>
+        <li><a href="../../contact/">Contact</a></li>
+      </ul>
+      <button class="nav-hamburger" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <nav class="nav-overlay" aria-label="Mobile navigation" aria-hidden="true">
+    <button class="nav-close" aria-label="Close navigation menu">✕</button>
+    <a href="../../">Home</a>
+    <a href="../../research/" class="active">Research</a>
+    <a href="../../cv/">CV</a>
+    <a href="../../writing/">Writing</a>
+    <a href="../../art/">Creative Projects</a>
+    <a href="../../contact/">Contact</a>
+  </nav>
+
+  <main>
+    <div style="max-width:var(--max-width);margin:0 auto;padding:var(--space-8) var(--space-3);">
+
+      <a href="../../research/" class="back-link">← Research</a>
+
+      <div class="project-header">
+        <div class="project-meta-row">
+          <span class="pill pill-status-complete">Complete</span>
+          <span class="pill">Molecular Evolution</span>
+          <span class="pill">Bioinformatics</span>
+        </div>
+
+        <h1 style="font-family:var(--font-display);font-size:clamp(1.6rem,3vw + 0.5rem,2.4rem);font-weight:400;line-height:1.2;margin-bottom:var(--space-2);">
+          Evidence of Purifying Selection in Cytokine Receptor 2 (CXCR2) Reveals Differences in Cetacean Rate of Protein Evolution
+        </h1>
+
+        <p style="font-size:0.9rem;color:var(--color-text-muted);">
+          EEB460, University of Toronto · Toronto, ON · 2023
+        </p>
+      </div>
+
+      <blockquote class="project-question">
+        Is there a quantifiable difference in CXCR2 protein evolution rates across cetaceans, and does purifying selection on this immune receptor contribute to reduced cancer incidence in large-bodied baleen whales?
+      </blockquote>
+
+      <div class="project-section">
+        <p class="project-section-label">My Role</p>
+        <p style="line-height:1.75;">
+          I designed and executed the full analysis independently: sequence acquisition, alignment, phylogenetic reconstruction, and evolutionary selection analysis across a 20-species cetacean dataset.
+        </p>
+      </div>
+
+      <div class="project-section">
+        <p class="project-section-label">Methods</p>
+        <p style="line-height:1.75;">
+          CXCR2 amino acid sequences were obtained from NCBI and Ensembl and aligned using ClustalO. The dataset included 17 cetacean species and 3 artiodactyl outgroups. Maximum likelihood phylogenetic reconstruction was performed in MEGA using the JTT + G model selected across BIC, AICc, and parameter number calculations, with bootstrap support from 500 replicates. Branch length analysis used Mr. Bayes phylogenetic reconstruction configured with GTR + G + I substitution rates and Blosum62 likelihood model, run for 10,000 MCMC generations. Trees were visualized in FigTree. Evolutionary selection analysis was attempted in PAML using random site models and branch-site models to assess dN/dS rates and positive selection.
+        </p>
+      </div>
+
+      <div class="project-section">
+        <p class="project-section-label">Key Findings</p>
+        <p style="line-height:1.75;">
+          Mysticetes showed significantly shorter CXCR2 branch lengths than most Odontocetes, indicating slower rates of amino acid substitution. Delphinidae and Inioidea showed the highest substitution rates. Results support the hypothesis that purifying selection acts on CXCR2 in large-bodied baleen whales, potentially suppressing tumorigenesis pathways consistent with Peto's Paradox. PAML dN/dS analysis was limited by stop codons in predicted codon sequences, constraining conclusions on directional selection.
+        </p>
+      </div>
+
+      <div style="margin-top:var(--space-8);padding-top:var(--space-4);border-top:0.5px solid var(--color-border);display:flex;gap:var(--space-3);flex-wrap:wrap;">
+        <a href="../../research/" class="btn btn-secondary btn-sm">← All research</a>
+        <a href="/research/cetacean-bioacoustics/" class="btn btn-secondary btn-sm">Next project →</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <span class="footer-name">Teagan Keely Smith</span>
+      <span class="footer-copyright">© 2026</span>
+      <nav class="footer-links" aria-label="Footer links">
+        <a href="mailto:teaganksmith@gmail.com">teaganksmith@gmail.com</a>
+        <a href="https://www.linkedin.com/in/teagan-keely-smith-970066185/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/teaganksmith?tab=repositories" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://substack.com/@teagankeelysmith" target="_blank" rel="noopener noreferrer">Substack</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../../js/nav.js" defer></script>
+  <script src="../../js/cursor.js" defer></script>
+</body>
+</html>

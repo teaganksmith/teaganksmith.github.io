@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seconds-Scale Social Contagion in Nocturnal Flight Calls: A Calibrated Bound from Passive Acoustic Monitoring — Teagan Keely Smith</title>
+  <meta name="description" content="A pre-registered point-process analysis of 35,402 expert Raven annotations from six passive acoustic sensors, testing seconds-scale call contagion in nocturnal songbird migration. Two independent implementations, adjudicated against known ground truth. Python, Hawkes injection recovery, annotation QC." />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Seconds-Scale Social Contagion in Nocturnal Flight Calls: A Calibrated Bound from Passive Acoustic Monitoring — Teagan Keely Smith" />
+  <meta property="og:url" content="https://teaganksmith.github.io/research/flight-call-contagion/" />
+  <meta property="og:image" content="https://teaganksmith.github.io/images/research/flightcall-bandwidth-diagnostic.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://teaganksmith.github.io/research/flight-call-contagion/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/main.css?v=2" />
+
+  <style>
+    .project-figure { margin: var(--space-4) 0; }
+    .project-figure img {
+      width: 100%; height: auto; display: block;
+      border: 0.5px solid var(--color-border);
+      border-radius: var(--radius-card);
+      background: var(--color-bg-secondary);
+    }
+    .project-figure figcaption {
+      font-size: 0.8125rem; line-height: 1.6;
+      color: var(--color-text-muted);
+      margin-top: var(--space-2); max-width: var(--reading-width);
+    }
+    .project-figure figcaption strong { color: var(--color-text); font-weight: 500; }
+    .finding-list { line-height: 1.75; padding-left: 1.1rem; margin: 0; }
+    .finding-list li { margin-bottom: var(--space-2); }
+    .finding-list li::marker { color: var(--color-accent); }
+    .callout {
+      background: var(--color-bg-secondary);
+      border-left: 2px solid var(--color-accent);
+      border-radius: var(--radius-btn);
+      padding: var(--space-3);
+      line-height: 1.7;
+    }
+    /* Result tables: first project page on the site to carry them */
+    .table-wrap { overflow-x: auto; margin: var(--space-3) 0 0; }
+    .data-table {
+      border-collapse: collapse; width: 100%;
+      font-family: var(--font-body); font-size: 0.8125rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .data-table th, .data-table td {
+      text-align: right; padding: 0.5rem 0.75rem;
+      border-bottom: 0.5px solid var(--color-border); white-space: nowrap;
+    }
+    .data-table th:first-child, .data-table td:first-child { text-align: left; }
+    .data-table thead th {
+      font-size: 0.6875rem; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--color-text-muted); font-weight: 500;
+      border-bottom: 1px solid var(--color-text);
+    }
+    .data-table tbody tr.is-flagged { background: var(--color-amber-bg); }
+    .data-table tbody tr.is-flagged td { color: var(--color-amber-text); font-weight: 500; }
+    .table-note {
+      font-size: 0.8125rem; color: var(--color-text-muted);
+      line-height: 1.6; margin-top: var(--space-2); max-width: var(--reading-width);
+    }
+  </style>
+</head>
+<body class="project-page">
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../../" class="nav-logo">Teagan Keely Smith</a>
+      <ul class="nav-links" role="list">
+        <li><a href="../../research/" class="active">Research</a></li>
+        <li><a href="../../cv/">CV</a></li>
+        <li><a href="../../writing/">Writing</a></li>
+        <li class="nav-dropdown">
+          <a href="../../art/" class="nav-dropdown-toggle">Creative Projects <span class="nav-dropdown-arrow">▾</span></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="../../art/">Biological Illustration &amp; Oil</a></li>
+            <li><a href="../../art/photography/">Photography &amp; Videography</a></li>
+            <li><a href="../../art/fishie/">Fishie — Game</a></li>
+          </ul>
+        </li>
+        <li><a href="../../contact/">Contact</a></li>
+      </ul>
+      <button class="nav-hamburger" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <nav class="nav-overlay" aria-label="Mobile navigation" aria-hidden="true">
+    <button class="nav-close" aria-label="Close navigation menu">✕</button>
+    <a href="../../">Home</a>
+    <a href="../../research/" class="active">Research</a>
+    <a href="../../cv/">CV</a>
+    <a href="../../writing/">Writing</a>
+    <a href="../../art/">Creative Projects</a>
+    <a href="../../contact/">Contact</a>
+  </nav>
+
+  <main>
+    <div style="max-width:var(--max-width);margin:0 auto;padding:var(--space-8) var(--space-3);">
+
+      <a href="../../research/" class="back-link">← Research</a>
+
+      <div class="project-header">
+        <div class="project-meta-row">
+          <span class="pill pill-status-complete">Complete</span>
+          <span class="pill">Python</span>
+          <span class="pill">Raven</span>
+          <span class="pill">Passive Acoustic Monitoring</span>
+          <span class="pill">Point-Process Statistics</span>
+        </div>
+
+        <h1 style="font-family:var(--font-display);font-size:clamp(1.6rem,3vw + 0.5rem,2.4rem);font-weight:400;line-height:1.2;margin-bottom:var(--space-2);">
+          Seconds-Scale Social Contagion in Nocturnal Flight Calls: A Calibrated Bound from Passive Acoustic Monitoring
+        </h1>
+
+        <p style="font-size:0.9rem;color:var(--color-text-muted);">
+          Summer 2026 · Self-directed
+        </p>
+      </div>
+
+      <div class="project-section">
+        <p class="project-section-label">Project Overview</p>
+        <p style="line-height:1.75;">
+          Migrating songbirds call through the night, and captive work has established that they call more readily in response to conspecifics than to other species (Hamilton 1962; Morris et al. 2016). This project asked whether the seconds-scale signature of that behaviour, one bird answering another within a few seconds, is recoverable from wild passive acoustic monitoring data. The material was BirdVox-full-night: 62 hours of continuous audio from six autonomous units near Ithaca, New York, in which 35,402 avian flight calls were pinpointed in time and frequency by Andrew Farnsworth working in Raven, an annotation effort of 102 hours.
+        </p>
+        <p style="line-height:1.75;margin-top:var(--space-2);">
+          The pre-registered test rejected its null in all six sensors at Fisher <em>p</em> = 4.9 × 10⁻⁹. That rejection is an artefact of the null model, and the substance of this project is the work that established as much. Two implementations of the same pre-registration were written independently, using deliberately different algorithms, so that agreement would be evidence about the data rather than about a shared bug. They reached opposite verdicts, and were then adjudicated against series whose true answer was known by construction.
+        </p>
+      </div>
+
+      <div class="project-section">
+        <p class="project-section-label">Process</p>
+        <ul class="finding-list">
+          <li>Fixed the hypotheses, null models and the one irreducible confound in writing before obtaining the annotations, namely that a single microphone cannot distinguish one bird calling repeatedly from two birds answering each other.</li>
+          <li>Built a validation gate of 47 tests including 8 deliberate false-positive traps, each a case constructed to make a naive method claim an effect that is not present. The gate caught four genuine errors before they reached a claim, one of which had already contaminated a reported number.</li>
+          <li>Ran two independent implementations of the same brief and, on finding they disagreed, resolved the disagreement by measuring each estimator's bias against no-contagion series rather than by preferring either codebase.</li>
+          <li>Verified the novelty claim against the published literature after the analysis was complete. The claim did not survive, and the framing was narrowed from a first test to a replication with an added methodological diagnostic.</li>
+        </ul>
+      </div>
+
+      <div class="project-section">
+        <p class="project-section-label">Method</p>
+        <ul class="finding-list">
+          <li>Call times were compared against inhomogeneous-Poisson surrogates drawn from a kernel-smoothed estimate of the local calling rate, then the same comparison was repeated across a bandwidth ladder from 30 s to 2400 s to test whether the result depended on that smoothing choice.</li>
+          <li>The discriminator was calibrated against injected Hawkes contagion of known branching ratio, so that the disappearance of an effect could be distinguished from a null model absorbing it.</li>
+          <li>Frequency assortment between temporally near calls was tested against permutations with an explicit timescale, each frequency redrawn from calls within a bandwidth window, after the same monotonicity that defeated the temporal test appeared in the stratum-count sweep.</li>
+          <li>Annotations were verified against an independent short-time Fourier transform measurement with a noise-calibrated detection floor, and duty-cycled recording schedules were simulated across 24 randomised cycle phases each.</li>
+        </ul>
+      </div>
+
+      <figure class="project-figure">
+        <img src="../../images/research/flightcall-bandwidth-diagnostic.png" alt="Two panels. Left: short-lag excess for all six sensors rising smoothly from below 1.0 at a 30 second null bandwidth to between 1.05 and 1.35 at 2400 seconds, with a marked vertical line at 60 seconds where the curves cross 1.0. Right: synthetic ground truth showing injected Hawkes contagion holding an excess of 1.32 at a 60 second null while two no-contagion Poisson generators sit at or below 1.0." />
+        <figcaption>
+          <strong>The clustering signal is a property of the null model.</strong> Left: short-lag excess in the real data is a smooth increasing function of the rate-smoothing bandwidth of the null, which is the signature of unmodelled rate structure rather than of a fixed biological timescale. Right: the same ladder run on synthetic series with known answers. Injected Hawkes contagion at τ = 5 s retains an excess of 1.32 against a 60 s null, so a null that tight does not absorb genuine seconds-scale triggering. It absorbs minutes-scale rate variation, which is what the real sensors contain.
+        </figcaption>
+      </figure>
+
+      <div class="project-section">
+        <p class="project-section-label">Result</p>
+        <ul class="finding-list">
+          <li>The pre-registered positive does not survive. Excess ratios are 1.02 to 1.15 while every <em>p</em> sits at the empirical floor, so the test reports surrogate variance rather than effect size. The recovered timescales are 20 to 167 s, an order of magnitude too long for a call-and-response kernel, and excess persists to the edge of the 90 s window.</li>
+          <li>Injection recovery converts the negative into a bound. Branching ratios of β ≳ 0.4 are excluded on each sensor's own call series, β ≈ 0.2 sits at the edge of what these methods resolve, and β ≲ 0.1 lies below the noise floor. This states what the data can rule out rather than only what it failed to detect.</li>
+          <li>The two implementations disagree by more than the signal at the boundary of the bound. Across all six sensors at a 60 s null the spread between them is 0.108, while a β = 0.2 injection lifts the statistic by only 0.059 on average. A β = 0.4 injection lifts it considerably further and stays detectable, which is why 0.4 is excluded and 0.2 is not.</li>
+          <li>The disagreement was localised by substitution rather than by argument. Exchanging one component at a time on one sensor at a 30 s null moves the result by 0.002 when the surrogate draw is swapped and by 0.12 when the rate estimator is swapped, so the rate estimator carries almost the whole difference. These are separate measurements taken under different conditions from the 0.108 figure above and are not its components.</li>
+          <li>Bias calibration corrects both and reconciles neither. Against ten no-contagion replicates with a true ratio of exactly 1.000, one estimator is biased high by 0.242 at a 600 s bandwidth and the other low by 0.020 at 60 s, the direction that manufactures a negative. After correcting both, a residual gap of 0.076 remains that no measured bias explains.</li>
+          <li>One finding survives every bias above. A triggering process must be maximal as lag approaches zero, and no seconds-scale kernel peak appears in the pair correlation function at any bandwidth in either implementation. This is the strongest evidence against contagion as a mechanism, and it does not rest on the contested excess ratios.</li>
+          <li>Spectral assortment is partially supported. At the tightest null with demonstrated power, a residual of about 5 per cent survives (effect 0.951, <em>p</em> = 1.2 × 10⁻³) against the 15 to 17 per cent that the pre-registered null reports. Most of the apparent assortment is minutes-scale composition. This result has not been audited across implementations the way the temporal result was, so it carries no equivalent uncertainty estimate.</li>
+        </ul>
+      </div>
+
+      <div class="project-section">
+        <p class="project-section-label">What This Means</p>
+        <p style="line-height:1.75;">
+          <strong>The calls bunch together, but the bunching looks like traffic rather than conversation.</strong>
+          Birds cross a microphone in waves over minutes, and that alone accounts for the apparent clustering.
+          If birds were answering one another, the effect would be strongest at the shortest delays and would
+          fade within seconds. Instead the recovered timescales are 20 to 167 s, far too slow for a reply, and
+          no peak appears at short delay in either implementation.
+        </p>
+        <p style="line-height:1.75;margin-top:var(--space-2);">
+          <strong>The analysis puts a ceiling on how much answering could be happening.</strong> Adding
+          artificial call-and-response of known strength to the real recordings shows what the method would
+          have caught. If more than roughly four calls in ten were triggering a further call, it would have
+          been visible on this night. That much is ruled out. Anything weaker is not, and saying so is the
+          honest limit of a single microphone.
+        </p>
+        <p style="line-height:1.75;margin-top:var(--space-2);">
+          <strong>Calls close together in time are slightly more alike in pitch, by about five per cent.</strong>
+          Because species tend to call in different frequency ranges, this suggests that birds calling near each
+          other in time are often the same kind of bird. Three explanations fit that observation equally well
+          from one microphone: they are travelling together, they are answering one another, or one bird called
+          twice. Work using a three-dimensional array that can locate individual birds found that similar
+          sounding species do fly closer together (Gayk and Mennill 2023), which makes travelling together the
+          most economical reading of a five per cent effect.
+        </p>
+        <p style="line-height:1.75;margin-top:var(--space-2);">
+          <strong>For monitoring programmes, the recording schedule matters more than it might appear.</strong>
+          Saving battery by recording ten minutes in every hour can misstate a night's total by around sixty per
+          cent and move the apparent peak of migration by roughly half an hour. Nocturnal flight call monitoring
+          informs decisions such as when to dim building lights or curtail turbines during heavy migration, so an
+          hour's error in the peak is a practical cost rather than a statistical footnote.
+        </p>
+        <p style="line-height:1.75;margin-top:var(--space-2);">
+          <strong>For anyone reusing these annotations, the closest call pairs need care.</strong> Around
+          thirty-eight per cent of pairs separated by less than a quarter of a second are one call marked twice.
+          That has almost no effect on counting migrants, which is what the dataset was built for, and a large
+          effect on any question about the timing between calls, which is what this project asked.
+        </p>
+      </div>
+
+      <div class="project-section">
+        <p class="project-section-label">Annotation Verification</p>
+        <p style="line-height:1.75;">
+          300 annotations were sampled at random from the densest sensor and re-measured against an independent spectrogram estimate, itself validated against synthesised calls of known centre time and frequency before any annotation was judged. Detectable energy was found at 80.3 per cent of annotated positions, with the 59 non-detections clustering just below the detection threshold at a median peak signal-to-noise ratio of 14.6 dB against a 16 dB floor. These are faint calls that an expert heard and a conservative automatic threshold rejects.
+        </p>
+        <p style="line-height:1.75;margin-top:var(--space-2);">
+          Timing agrees closely, at a median absolute difference of 21 ms. Centre frequency does not, at a median absolute difference of 225 Hz with a consistent positive offset of 82 Hz. A centre frequency placed by eye in Raven is not defined to equal a spectral peak, so the offset is a definitional difference rather than an error rate, and the scatter around it is the quality-control signal. 143 of the 300 were exported as a Raven selection table for human review.
+        </p>
+      </div>
+
+      <figure class="project-figure">
+        <img src="../../images/research/flightcall-double-annotations.png" alt="Two panels. Left: bar chart of 60 audited pairs separated by under 0.25 seconds, showing 32 distinct sequential calls, 5 distinct calls in the same band, and 23 classified as one call annotated twice. Right: scatter of measured frequency separation against annotated gap, with double annotations falling below a 150 Hz separation line and distinct calls above it." />
+        <figcaption>
+          <strong>A large share of the closest call pairs are one call marked twice.</strong> Of 60 audited consecutive pairs separated by 0.25 s or less, 38 per cent are the same call annotated twice, classified by measured energy separation rather than by the annotated gap alone. The densest sensor contains 2,388 such gaps. This matters because those pairs are exactly the ones a seconds-scale contagion test relies on, and it is why the assortment result was re-run with them excluded. It survived unchanged.
+        </figcaption>
+      </figure>
+
+      <div class="project-section">
+        <p class="project-section-label">Annotated Frequency Is Quantised</p>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th scope="col">Unit</th><th scope="col">Distinct values</th><th scope="col">Calls</th><th scope="col">Modal step (Hz)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>unit01</td><td>446</td><td>2,926</td><td>24</td></tr>
+              <tr><td>unit02</td><td>540</td><td>4,730</td><td>23</td></tr>
+              <tr class="is-flagged"><td>unit03</td><td>139</td><td>9,113</td><td>79</td></tr>
+              <tr><td>unit05</td><td>185</td><td>5,264</td><td>39</td></tr>
+              <tr><td>unit07</td><td>282</td><td>6,530</td><td>19</td></tr>
+              <tr><td>unit10</td><td>186</td><td>6,839</td><td>98</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">
+          Annotated centre frequency is quantised, and to a different step in every unit. unit03 records the most calls and the fewest distinct values, a zoom and readout artefact of the annotation session rather than a property of the birds. The consequence is statistical: a median-based frequency statistic returns exactly 1.000 for three of the six sensors, so the mean is used throughout for effects of this size.
+        </p>
+      </div>
+
+      <div class="project-section">
+        <p class="project-section-label">Consequences for Monitoring Design</p>
+        <p style="line-height:1.75;">
+          Field deployments record on a duty cycle to conserve power, and nightly totals are then scaled by the duty fraction. Simulating standard schedules over the continuously recorded night shows that this correction is close to unbiased on average while remaining unreliable for any single deployment.
+        </p>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th scope="col">Schedule (on / period, min)</th><th scope="col">Duty</th>
+                <th scope="col">Mean error</th><th scope="col">95th pct absolute error</th>
+                <th scope="col">Peak-hour shift</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1 / 6</td><td>0.17</td><td>+0.0%</td><td>11%</td><td>0 min</td></tr>
+              <tr><td>5 / 15</td><td>0.33</td><td>&minus;0.1%</td><td>7%</td><td>0 min</td></tr>
+              <tr><td>5 / 30</td><td>0.17</td><td>&minus;2.1%</td><td>35%</td><td>9 min</td></tr>
+              <tr class="is-flagged"><td>10 / 60</td><td>0.17</td><td>&minus;9.4%</td><td>59%</td><td>26 min</td></tr>
+              <tr><td>15 / 60</td><td>0.25</td><td>&minus;1.6%</td><td>62%</td><td>16 min</td></tr>
+              <tr><td>30 / 60</td><td>0.50</td><td>+3.7%</td><td>35%</td><td>0 min</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">
+          Median across the six sensors, 24 random cycle phases per schedule. A five-minute window in every thirty is near-unbiased on average and wrong by 28 to 47 per cent at the 95th percentile on a single deployment. Coarse schedules also displace the apparent migration peak, by 26 minutes at the median and by up to 160 minutes on one sensor.
+        </p>
+      </div>
+
+      <figure class="project-figure">
+        <img src="../../images/research/flightcall-duty-cycle.png" alt="Three panels. Left: 95th percentile absolute error in nightly totals rising from about 7 per cent for a 5 in 15 minute schedule to about 62 per cent for 15 in 60. Centre: displacement of the busiest hour peaking at 26 minutes for a 10 in 60 schedule. Right: injected contagion at beta 0.4 and 0.2 staying above 1.0 at every schedule while the real data stays at or below 1.0." />
+        <figcaption>
+          <strong>Duty cycling costs precision without destroying detectability.</strong> Injected contagion at β = 0.4 remains significant under every schedule tested, so a duty-cycled deployment could still detect strong contagion. The real data stays at or below 1.0 throughout, which reconfirms the main negative result through an independently constructed null. What duty cycling does cost is precision on abundance and accuracy on the timing of the migration peak.
+        </figcaption>
+      </figure>
+
+      <div class="project-section">
+        <p class="project-section-label">Relation to Published Work</p>
+        <p style="line-height:1.75;">
+          The pre-registration claimed that no published work tests seconds-scale call contagion or spectral assortment in wild passive acoustic data. That claim did not survive checking and the framing was narrowed accordingly. Van Doren et al. (2025) tested cross-species co-occurrence in more than 18,000 hours of recordings across 27 species, using a 30 s association window with 15 s and 60 s as robustness checks. Gayk and Mennill (2023) tested spectral assortment directly and positively using a three-dimensional microphone array that localises individuals, which is the instrument a single-microphone design lacks. Hawkes self-excitation has already been applied to right whale counter-calling and to bat echolocation buzzes.
+        </p>
+        <p style="line-height:1.75;margin-top:var(--space-2);">
+          The central statistical result is also not new, and it is worth naming precisely. The confounding of first-order rate structure with second-order clustering is long established in spatial statistics, where it is treated as a question of whether intensity and interaction are separately identifiable at all (Diggle et al. 2007; Gabriel 2014; Baddeley et al. 2000). The same problem is standard in spike-train analysis, where slow rate covariation is known to produce correlogram peaks resembling precise timing, and where the smoothing scale is declared as part of the null hypothesis rather than treated as a nuisance (Brody 1999; Grün 2009). In the Hawkes setting specifically, a nonstationary background is known to inflate the estimated branching ratio (Filimonov and Sornette 2015). Duty-cycle bias in passive acoustic monitoring is likewise established, including the finding that subsampling penalties are worst for temporally clustered vocal activity (Thomisch et al. 2015; Rand et al. 2022).
+        </p>
+      </div>
+
+      <div class="project-section">
+        <p class="project-section-label">Tooling and Provenance</p>
+        <p style="line-height:1.75;">
+          This project was built with AI assistance. The two implementations described above were produced by
+          two separate agent sessions working the same written brief without access to each other's code, which
+          is why their disagreement is informative about the analysis rather than about a shared bug. The
+          hypotheses, the decision to treat that disagreement as the headline result, and the choices about what
+          to report and what to withhold are mine. Statistical primitives were written directly on NumPy and
+          SciPy rather than taken from an existing package; established implementations of the same mathematics
+          exist in spatstat, tick and elephant, and are noted here as prior art rather than as dependencies.
+        </p>
+      </div>
+
+      <div class="project-section">
+        <p class="project-section-label">Limitations</p>
+        <div class="callout">
+          <p style="margin:0;">
+            The data cover one night at one location, so night-specific weather and species composition are inseparable from the result. A single microphone cannot establish individual identity, and the gap convention used in monitoring work to separate individuals cannot help here: it splits passages at 60 to 300 s, whereas the pairs under test are separated by 5 s or less, so every tested pair falls inside one passage by construction. Only 0.03 to 1.09 per cent of calls are isolated at a 60 s gap. The surviving assortment residual is therefore consistent with call-and-response, with same-species birds travelling together, and with one bird calling twice, and it does not choose between them. Only centre frequency was available, with no bandwidth, duration or modulation, and that one dimension is coarsely quantised. The negative temporal result is a bound rather than proof of absence: β ≳ 0.4 is excluded on this night, while β ≈ 0.2 remains unresolved because two independent implementations disagree by 0.076 where that injection produces only 0.059.
+          </p>
+        </div>
+      </div>
+
+      <div class="project-section">
+        <p class="project-section-label">Methods &amp; Tools</p>
+        <div style="display:flex;gap:var(--space-1);flex-wrap:wrap;margin-top:var(--space-1);">
+          <span class="pill">Python</span>
+          <span class="pill">NumPy</span>
+          <span class="pill">SciPy</span>
+          <span class="pill">Raven</span>
+          <span class="pill">Point-Process Statistics</span>
+          <span class="pill">Hawkes Processes</span>
+          <span class="pill">Injection Recovery</span>
+          <span class="pill">Permutation Testing</span>
+          <span class="pill">Spectrogram Analysis</span>
+          <span class="pill">Pre-Registration</span>
+          <span class="pill">Passive Acoustic Monitoring</span>
+        </div>
+      </div>
+
+      <div class="project-section">
+        <p class="project-section-label">Data &amp; Sources</p>
+        <p style="font-size:0.875rem;color:var(--color-text-muted);line-height:1.7;margin-top:var(--space-1);">
+          Audio and annotations: Lostanlen, V., Salamon, J., Farnsworth, A., Kelling, S. &amp; Bello, J. P., <em>BirdVox-full-night</em>, Zenodo record 1205569, DOI 10.5281/zenodo.1205569, CC BY 4.0. Six ROBIN recording units, 24 kHz mono, roughly 10.9 hours per unit, near Ithaca, New York, 23 September 2015; 35,402 flight calls annotated in Raven by Andrew Farnsworth. Dataset described in Lostanlen et al. 2018, <em>ICASSP</em>. Cross-species co-occurrence after Van Doren, B. M., DeSimone, J., Firth, J. A., Hillemann, F., Gayk, Z., Cohen, E. &amp; Farnsworth, A. 2025, <em>Current Biology</em> 35(4):898–904. Spectral assortment with three-dimensional localisation after Gayk, Z. &amp; Mennill, D. 2023, <em>Philosophical Transactions of the Royal Society B</em> 378:20220114. Raven Pro, K. Lisa Yang Center for Conservation Bioacoustics, Cornell Lab of Ornithology.
+          Flight-calling behaviour after Hamilton, W. J. 1962, <em>The Condor</em> 64(5):390–401, and Morris, S. R.,
+          Horton, K. G., Tegeler, A. K. &amp; Lanzone, M. 2016, <em>Animal Behaviour</em> 114:241–247.
+          On the identifiability of intensity and interaction in point processes: Baddeley, A., Møller, J. &amp;
+          Waagepetersen, R. 2000, <em>Statistica Neerlandica</em> 54(3):329–350; Diggle, P. J. et al. 2007,
+          <em>Biometrics</em> 63(2):550–557; Gabriel, E. 2014, <em>Methodology and Computing in Applied
+          Probability</em> 16(2):411–431. On rate nonstationarity in correlation analysis: Brody, C. D. 1999,
+          <em>Neural Computation</em> 11(7):1537–1551; Grün, S. 2009, <em>Journal of Neurophysiology</em>
+          101(3):1126–1140. On branching-ratio inflation under a nonstationary background: Filimonov, V. &amp;
+          Sornette, D. 2015, <em>Quantitative Finance</em> 15(8):1293–1314. On duty-cycle subsampling in passive
+          acoustic monitoring: Thomisch, K. et al. 2015, <em>JASA</em> 138(1):267–278, and Rand, Z., Wood, J. &amp;
+          Oswald, J. N. 2022, <em>JASA</em> 151(3):1651–1660.
+        </p>
+      </div>
+
+      <div style="margin-top:var(--space-8);padding-top:var(--space-4);border-top:0.5px solid var(--color-border);display:flex;gap:var(--space-3);flex-wrap:wrap;">
+        <a href="../../research/" class="btn btn-secondary btn-sm">← All research</a>
+        <a href="../coda-repertoire/" class="btn btn-secondary btn-sm">Next project →</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <span class="footer-name">Teagan Keely Smith</span>
+      <span class="footer-copyright">© 2026</span>
+    </div>
+  </footer>
+
+</body>
+</html>

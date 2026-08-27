@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Teagan Keely Smith, Science Writer</title>
+  <meta name="description" content="Get in touch with Teagan Keely Smith — available for freelance science writing and research collaborations." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Contact — Teagan Keely Smith" />
+  <meta property="og:description" content="Available for freelance science writing assignments and open to research collaborations." />
+  <meta property="og:url" content="https://teaganksmith.github.io/contact/" />
+  <meta property="og:image" content="https://teaganksmith.github.io/images/og-default.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://teaganksmith.github.io/contact/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/main.css?v=2" />
+</head>
+<body class="contact-page">
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../" class="nav-logo">Teagan Keely Smith</a>
+      <ul class="nav-links" role="list">
+        <li><a href="../research/">Research</a></li>
+        <li><a href="../cv/">CV</a></li>
+        <li><a href="../writing/">Writing</a></li>
+        <li class="nav-dropdown">
+          <a href="../art/" class="nav-dropdown-toggle">Creative Projects <span class="nav-dropdown-arrow">▾</span></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="../art/">Biological Illustration &amp; Oil</a></li>
+            <li><a href="../art/photography/">Photography &amp; Videography</a></li>
+            <li><a href="../art/fishie/">Fishie — Game</a></li>
+          </ul>
+        </li>
+        <li><a href="../contact/" class="active">Contact</a></li>
+      </ul>
+      <button class="nav-hamburger" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <nav class="nav-overlay" aria-label="Mobile navigation" aria-hidden="true">
+    <button class="nav-close" aria-label="Close navigation menu">✕</button>
+    <a href="../">Home</a>
+    <a href="../research/">Research</a>
+    <a href="../cv/">CV</a>
+    <a href="../writing/">Writing</a>
+    <a href="../art/">Creative Projects</a>
+    <a href="../contact/" class="active">Contact</a>
+  </nav>
+
+  <main>
+
+    <header class="page-header">
+      <div class="page-header-inner">
+        <h1 class="page-h1">Get in touch</h1>
+        <p class="page-header-desc">
+          I'm currently available for freelance science writing assignments and open to research collaborations. I respond to most enquiries within two business days.
+        </p>
+      </div>
+    </header>
+
+
+    <!-- Direct email — visible and clickable, not hidden behind form only -->
+    <a href="mailto:teaganksmith@gmail.com" class="contact-email-display" aria-label="Email teaganksmith@gmail.com">
+      teaganksmith@gmail.com
+    </a>
+
+    <!-- ============================================================
+         CONTACT FORM
+         ============================================================ -->
+    <!-- TODO: Wire form to a real backend before launching.
+         Options:
+         A) Formspree: set action="https://formspree.io/f/[your-form-id]" and method="POST"
+         B) Netlify: add netlify attribute to <form> if deploying on Netlify
+         C) EmailJS: use the contact.js file to integrate EmailJS SDK
+         Current behaviour: simulated success state (no real email sent) -->
+    <form class="contact-form" id="contact-form" novalidate aria-label="Contact form">
+
+      <!-- Honeypot — hidden from real users, bots fill it in -->
+      <div class="form-honeypot" aria-hidden="true">
+        <label for="hp-website">Website (leave blank)</label>
+        <input type="text" id="hp-website" name="website" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="contact-name">Name</label>
+        <input
+          class="form-input"
+          type="text"
+          id="contact-name"
+          name="name"
+          autocomplete="name"
+          required
+          aria-required="true"
+          placeholder="Your name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="contact-email">Email</label>
+        <input
+          class="form-input"
+          type="email"
+          id="contact-email"
+          name="email"
+          autocomplete="email"
+          required
+          aria-required="true"
+          placeholder="your@email.com"
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="contact-subject">Subject</label>
+        <select class="form-select" id="contact-subject" name="subject" aria-label="Select subject">
+          <option value="" disabled selected>Select a subject</option>
+          <option value="Pitch">Pitch</option>
+          <option value="Collaboration">Collaboration</option>
+          <option value="Commission">Commission (Art)</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="contact-message">Message</label>
+        <textarea
+          class="form-textarea"
+          id="contact-message"
+          name="message"
+          required
+          aria-required="true"
+          placeholder="Tell me about your project or idea..."
+        ></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary form-submit" id="contact-submit">
+        Send message
+      </button>
+
+    </form>
+
+    <!-- Inline success message (shown after submit, hidden initially) -->
+    <div class="form-success" id="form-success" role="alert" aria-live="assertive" tabindex="-1">
+      <strong style="font-weight:500;">Message sent.</strong> Thank you — I'll be in touch within two business days.
+    </div>
+
+    <!-- ============================================================
+         SOCIAL / PROFILE LINKS
+         ============================================================ -->
+    <div class="contact-socials" aria-label="Profile and social links">
+
+      <!-- TODO: Replace all # hrefs with real profile URLs -->
+      <a href="https://www.linkedin.com/in/teagan-keely-smith-970066185/" target="_blank" rel="noopener noreferrer" class="contact-social-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+          <rect x="2" y="9" width="4" height="12"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
+        LinkedIn
+      </a>
+
+      <a href="https://github.com/teaganksmith?tab=repositories" target="_blank" rel="noopener noreferrer" class="contact-social-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+        </svg>
+        GitHub
+      </a>
+
+      <a href="https://substack.com/@teagankeelysmith" target="_blank" rel="noopener noreferrer" class="contact-social-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
+        </svg>
+        Substack
+      </a>
+
+    </div>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <span class="footer-name">Teagan Keely Smith</span>
+      <span class="footer-copyright">© 2026</span>
+      <nav class="footer-links" aria-label="Footer links">
+        <a href="mailto:teaganksmith@gmail.com">teaganksmith@gmail.com</a>
+        <a href="https://www.linkedin.com/in/teagan-keely-smith-970066185/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/teaganksmith?tab=repositories" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://substack.com/@teagankeelysmith" target="_blank" rel="noopener noreferrer">Substack</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../js/nav.js" defer></script>
+  <script src="../js/cursor.js" defer></script>
+  <script src="../js/contact.js" defer></script>
+</body>
+</html>

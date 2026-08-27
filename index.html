@@ -1,195 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Teagan K Smith</title>
-<meta name="description" content="Teagan K Smith. Spectral Science, Accendra.io, and the Interspecies newsletter.">
-<meta property="og:title" content="Teagan K Smith">
-<meta property="og:description" content="Spectral Science, Accendra.io, and the Interspecies newsletter.">
-<meta property="og:type" content="profile">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #f4f3f0;
-    --ink: #141414;
-    --muted: #8f8d85;
-    --line: #d6d4cd;
-    --line-soft: #e2e0d9;
-    --hover: #ebe9e4;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: "Onest", system-ui, -apple-system, sans-serif;
-    line-height: 1.5;
-    min-height: 100vh;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: inherit; text-decoration: none; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teagan Keely Smith — Science Writer, Researcher & Artist</title>
+  <meta name="description" content="Teagan Keely Smith is a science writer, emerging bioacoustics researcher, and visual artist. She covers animal minds, interspecies communication, and the ethics of listening." />
 
-  .wrap { max-width: 460px; margin: 0 auto; padding: 54px 26px 52px; }
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Teagan Keely Smith — Science Writer, Researcher & Artist" />
+  <meta property="og:description" content="Science writer covering animal cognition, interspecies communication, and conservation. Emerging bioacoustics researcher. Visual artist." />
+  <meta property="og:url" content="https://teaganksmith.github.io/" />
+  <meta property="og:image" content="https://teaganksmith.github.io/images/og-default.jpg" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Teagan Keely Smith — Science Writer, Researcher & Artist" />
+  <meta name="twitter:description" content="Science writer covering animal cognition, interspecies communication, and conservation." />
+  <meta name="twitter:image" content="https://teaganksmith.github.io/images/og-default.jpg" />
+  <!-- Canonical -->
+  <link rel="canonical" href="https://teaganksmith.github.io/" />
 
-  /* ---------- masthead ---------- */
-  .masthead { text-align: center; }
-  .frame {
-    display: inline-block;
-    border: 1px solid var(--line);
-    padding: 7px;
-    margin-bottom: 22px;
-  }
-  .frame img {
-    display: block;
-    width: 196px;
-    height: 214px;
-    object-fit: cover;
-    filter: grayscale(1);
-  }
-  h1 {
-    font-size: 37px;
-    font-weight: 600;
-    letter-spacing: -0.035em;
-    line-height: 1.05;
-  }
-  .socials {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 18px;
-  }
-  .social {
-    width: 42px;
-    height: 42px;
-    border: 1px solid var(--line);
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    transition: background 0.2s ease, border-color 0.2s ease;
-  }
-  .social svg { width: 17px; height: 17px; fill: var(--ink); transition: fill 0.2s ease; }
-  a.social:hover { background: var(--ink); border-color: var(--ink); }
-  a.social:hover svg { fill: var(--bg); }
-  a.social:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
-  .social.soon { border-style: dashed; cursor: default; }
-  .social.soon svg { fill: var(--muted); }
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
 
-  /* ---------- index ---------- */
-  .index { margin: 44px 0 46px; }
-  .row {
-    display: flex;
-    align-items: baseline;
-    gap: 14px;
-    padding: 19px 0;
-    border-bottom: 1px solid var(--line);
-    transition: padding-left 0.2s ease;
-  }
-  .row:first-child { border-top: 1px solid var(--line); }
-  .row .name {
-    font-size: 19.5px;
-    font-weight: 500;
-    letter-spacing: -0.012em;
-    flex: 1;
-  }
-  .row .note {
-    font-size: 11px;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    white-space: nowrap;
-  }
-  .row .arrow { font-size: 15px; color: var(--muted); transition: color 0.2s ease, transform 0.2s ease; }
-  .row:hover { padding-left: 8px; }
-  .row:hover .arrow { color: var(--ink); transform: translate(2px, -2px); }
-  .row:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
-
-  /* ---------- latest ---------- */
-  .label {
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 6px;
-  }
-  .ed {
-    display: block;
-    padding: 15px 0;
-    border-bottom: 1px solid var(--line-soft);
-    transition: padding-left 0.2s ease;
-  }
-  .ed:hover { padding-left: 8px; }
-  .ed:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
-  .ed .d { font-size: 11.5px; color: var(--muted); display: block; margin-bottom: 3px; }
-  .ed .t { font-size: 15.5px; font-weight: 500; line-height: 1.4; }
-
-  footer {
-    margin-top: 38px;
-    text-align: center;
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .rise { opacity: 0; transform: translateY(12px); animation: rise 0.6s cubic-bezier(0.22,0.61,0.36,1) forwards; }
-    @keyframes rise { to { opacity: 1; transform: none; } }
-    .d1 { animation-delay: .04s } .d2 { animation-delay: .11s } .d3 { animation-delay: .18s }
-    .d4 { animation-delay: .25s } .d5 { animation-delay: .32s } .d6 { animation-delay: .40s }
-  }
-</style>
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/main.css?v=2" />
 </head>
 <body>
-<div class="wrap">
 
-  <header class="masthead">
-    <div class="frame rise d1">
-      <img src="Profile%20Photo_2026.png" alt="Portrait of Teagan K Smith">
-    </div>
-    <h1 class="rise d2">Teagan K Smith</h1>
-    <div class="socials rise d3">
-      <a class="social" href="https://www.linkedin.com/in/teagan-keely-smith-970066185/" aria-label="Teagan K Smith on LinkedIn">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.24 8.31h4.52V23H.24V8.31zM8.34 8.31h4.33v2h.06c.6-1.14 2.08-2.34 4.28-2.34 4.57 0 5.42 3.01 5.42 6.92V23h-4.52v-7.12c0-1.7-.03-3.88-2.36-3.88-2.37 0-2.73 1.85-2.73 3.76V23H8.34V8.31z"/></svg>
-      </a>
-      <span class="social soon" role="img" aria-label="Instagram, coming soon" title="Coming soon">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 6.18a3.66 3.66 0 100 7.32 3.66 3.66 0 000-7.32zm0 6.04a2.38 2.38 0 110-4.76 2.38 2.38 0 010 4.76zm4.66-6.18a.86.86 0 11-1.71 0 .86.86 0 011.71 0z"/></svg>
-      </span>
-    </div>
-  </header>
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="./" class="nav-logo" aria-label="Teagan Keely Smith — Home">Teagan Keely Smith</a>
 
-  <nav class="index rise d4" aria-label="Main links">
-    <a class="row" href="https://spectralsite.vercel.app">
-      <span class="name">Spectral Science</span><span class="note">Waitlist</span><span class="arrow" aria-hidden="true">&#8599;</span>
-    </a>
-    <a class="row" href="https://accendra.io">
-      <span class="name">Accendra.io</span><span class="note">Agency</span><span class="arrow" aria-hidden="true">&#8599;</span>
-    </a>
-    <a class="row" href="https://www.linkedin.com/newsletters/7473099872217509888/">
-      <span class="name">Interspecies</span><span class="note">Newsletter</span><span class="arrow" aria-hidden="true">&#8599;</span>
-    </a>
-    <a class="row" href="https://teaganksmith.github.io/teagan-portfolio/">
-      <span class="name">Portfolio</span><span class="note">About me</span><span class="arrow" aria-hidden="true">&#8599;</span>
-    </a>
+      <ul class="nav-links" role="list">
+        <li><a href="./research/">Research</a></li>
+        <li><a href="./cv/">CV</a></li>
+        <li><a href="./writing/">Writing</a></li>
+        <li class="nav-dropdown">
+          <a href="./art/" class="nav-dropdown-toggle">Creative Projects <span class="nav-dropdown-arrow">▾</span></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="./art/">Biological Illustration &amp; Oil</a></li>
+            <li><a href="./art/photography/">Photography &amp; Videography</a></li>
+            <li><a href="./art/fishie/">Fishie — Game</a></li>
+          </ul>
+        </li>
+        <li><a href="./contact/">Contact</a></li>
+      </ul>
+
+      <button class="nav-hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-overlay">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
-  <section class="rise d5">
-    <h2 class="label">Latest from Interspecies</h2>
-    <a class="ed" href="https://www.linkedin.com/pulse/what-bonobo-means-when-peeps-before-whistles-teagan-keely-smith-xjhwc">
-      <span class="d">Aug 24, 2026</span><span class="t">What a bonobo means when it peeps before it whistles</span>
-    </a>
-    <a class="ed" href="https://www.linkedin.com/pulse/who-owns-whales-voice-teagan-keely-smith-dv1nc">
-      <span class="d">Aug 10, 2026</span><span class="t">Who owns a whale's voice?</span>
-    </a>
-    <a class="ed" href="https://www.linkedin.com/pulse/ai-built-speak-whale-acoustically-teagan-keely-smith-uwfmc">
-      <span class="d">Jul 24, 2026</span><span class="t">The AI built to speak whale, acoustically</span>
-    </a>
-  </section>
+  <!-- Mobile overlay nav -->
+  <nav class="nav-overlay" id="nav-overlay" aria-label="Mobile navigation" aria-hidden="true">
+    <button class="nav-close" aria-label="Close navigation menu">✕</button>
+    <a href="./">Home</a>
+    <a href="./research/">Research</a>
+    <a href="./cv/">CV</a>
+    <a href="./writing/">Writing</a>
+    <a href="./art/">Creative Projects</a>
+    <a href="./contact/">Contact</a>
+  </nav>
 
-  <footer class="rise d6">Teagan K Smith</footer>
+  <main>
 
-</div>
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="hero" aria-labelledby="hero-headline">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <h1 class="hero-headline" id="hero-headline">
+            Science that<br>
+            listens to the<br>
+            <em>animal world.</em>
+          </h1>
+
+          <p class="hero-sub">
+            I'm a science writer with two closely linked interests: the science of animal consciousness and language, and the conservation and policy implications of what that science reveals. I'm also the founder of Spectral, a science visualization studio, and the cofounder of Accendra. From a background in comparative physiology and field research with whales, I write about what we're learning about non-human minds, and what we're obligated to do with that knowledge.
+          </p>
+
+          <div class="btn-group">
+            <a href="./writing/" class="btn btn-primary">Read my work</a>
+            <a href="./contact/" class="btn btn-secondary">Get in touch</a>
+            <a href="https://www.linkedin.com/in/teagan-keely-smith-970066185/" target="_blank" rel="noopener noreferrer" class="hero-linkedin" aria-label="Teagan Keely Smith on LinkedIn">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Conference badge on a lanyard: swoops in from the top right -->
+      <div class="lanyard">
+        <div class="lanyard-swing">
+          <div class="lanyard-strap" aria-hidden="true">
+            <span>Teagan Keely Smith&nbsp;&nbsp;·&nbsp;&nbsp;Interspecies&nbsp;&nbsp;·&nbsp;&nbsp;Teagan Keely Smith&nbsp;&nbsp;·&nbsp;&nbsp;Interspecies&nbsp;&nbsp;·&nbsp;&nbsp;Teagan Keely Smith&nbsp;&nbsp;·&nbsp;&nbsp;Interspecies</span>
+          </div>
+          <div class="badge-swing">
+            <svg class="lanyard-clasp" width="44" height="60" viewBox="0 0 44 60" aria-hidden="true">
+              <!-- Metal ring joins the strap; black clip matches strap and slot -->
+              <circle cx="22" cy="10" r="7.5" fill="none" stroke="#9B9791" stroke-width="3"/>
+              <path d="M22 17.5 L22 24" stroke="#9B9791" stroke-width="3" stroke-linecap="round"/>
+              <path d="M13 24 h18 a4 4 0 0 1 4 4 v8 a4 4 0 0 1 -4 4 h-18 a4 4 0 0 1 -4 -4 v-8 a4 4 0 0 1 4 -4 Z" fill="#16140F"/>
+              <path d="M17 30 h10" stroke="#3A362E" stroke-width="1.6" stroke-linecap="round"/>
+              <rect x="16" y="40" width="12" height="19" rx="2.5" fill="#16140F"/>
+            </svg>
+            <div class="badge-card">
+              <span class="badge-slot" aria-hidden="true"></span>
+              <img src="images/profile-badge.jpg" alt="Teagan Keely Smith" />
+              <p class="badge-name">Teagan Keely Smith</p>
+              <span class="badge-rule" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FEATURED WORK STRIP
+         ============================================================ -->
+    <section class="featured-strip section" aria-labelledby="featured-label">
+      <div class="container">
+        <div class="section-label">
+          <span class="label-caps" id="featured-label">Featured work</span>
+        </div>
+
+        <div class="three-col">
+
+          <!-- Card 1: Writing -->
+          <article class="featured-card">
+            <img class="featured-card-cover" src="images/writing/who-owns-a-whales-voice.jpg" alt="" loading="lazy" />
+            <div class="featured-card-body">
+              <div class="featured-card-category">
+                <span class="pill pill-accent">Writing</span>
+              </div>
+              <h3 class="featured-card-title">
+                Who owns a whale's voice?
+              </h3>
+              <p class="featured-card-desc">
+                A global survey asked 1,057 people across sixty-seven countries who should own the recording of a whale's song. Four in ten said the conservation community; nearly one in five said the whale. The courts are about to face the same question.
+              </p>
+              <a href="https://www.linkedin.com/pulse/who-owns-whales-voice-teagan-keely-smith-dv1nc" target="_blank" rel="noopener noreferrer" class="featured-card-link" aria-label="Read this writing piece">Read →</a>
+            </div>
+          </article>
+
+          <!-- Card 2: Research -->
+          <article class="featured-card">
+            <img class="featured-card-cover" src="images/research/spermwhale-overlay-map.jpg" alt="" loading="lazy" />
+            <div class="featured-card-body">
+              <div class="featured-card-category">
+                <span class="pill pill-status-progress">Research</span>
+              </div>
+              <h3 class="featured-card-title">
+                Sperm Whale Foraging Habitat and Deep-Sea Mining Acoustic Risk, North Atlantic
+              </h3>
+              <p class="featured-card-desc">
+                Species distribution modelling of sperm whale foraging habitat across the North Atlantic from 71,104 GBIF occurrence records, overlaid with ISA deep-sea mining exploration contracts and published acoustic impact zones.
+              </p>
+              <a href="research/cetacean-occurrence/" class="featured-card-link" aria-label="View this research project">View project →</a>
+            </div>
+          </article>
+
+          <!-- Card 3: Art -->
+          <article class="featured-card">
+            <img class="featured-card-cover" src="art/images/digital%20painting/fish.JPG" alt="Fish, digital painting: a deep-sea anglerfish rendered against dark water." loading="lazy" />
+            <div class="featured-card-body">
+              <div class="featured-card-category">
+                <span class="pill pill-warm">Art</span>
+              </div>
+              <h3 class="featured-card-title">
+                Fish · Digital painting
+              </h3>
+              <p class="featured-card-desc">
+                From a body of work about ecological loss and the strange beauty of what lives underwater. Original works and prints are in the Etsy shop.
+              </p>
+              <a href="./art/" class="featured-card-link" aria-label="See the art gallery">See the gallery →</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <span class="footer-name">Teagan Keely Smith</span>
+      <span class="footer-copyright">© 2026</span>
+      <nav class="footer-links" aria-label="Footer links">
+        <a href="mailto:teaganksmith@gmail.com">teaganksmith@gmail.com</a>
+        <a href="https://www.linkedin.com/in/teagan-keely-smith-970066185/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/teaganksmith?tab=repositories" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://substack.com/@teagankeelysmith" target="_blank" rel="noopener noreferrer">Substack</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/nav.js" defer></script>
+  <script src="js/cursor.js" defer></script>
 </body>
 </html>
