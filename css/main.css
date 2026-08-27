@@ -814,6 +814,7 @@ main {
   aspect-ratio: 16 / 10;
   object-fit: cover;
   display: block;
+  filter: grayscale(1) contrast(1.03);
 }
 
 .featured-card-body {
