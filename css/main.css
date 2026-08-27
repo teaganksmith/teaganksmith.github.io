@@ -17,6 +17,7 @@
   --color-text-muted:   #6F6A5F;
   --color-accent:       #1E1B15;
   --color-accent-warm:  #8C6D3F;
+  --color-green:        #3D6145;
   --color-border:       #DED9CD;
   --color-white:        #FFFFFF;
   --color-on-accent:    #FBF8F1;
@@ -691,7 +692,7 @@ main {
 
 .hero-headline em {
   font-style: italic;
-  color: #4F7A58;
+  color: var(--color-green);
 }
 
 .hero-sub {
@@ -2290,15 +2291,12 @@ audio {
 
 /* Inline links inside the hero paragraph */
 .hero-sub a {
-  color: var(--color-text);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-  text-decoration-color: color-mix(in srgb, var(--color-accent-warm) 55%, transparent);
-  transition: color var(--transition-base), text-decoration-color var(--transition-base);
+  color: var(--color-green);
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity var(--transition-base);
 }
 
 .hero-sub a:hover {
-  color: var(--color-accent-warm);
-  text-decoration-color: var(--color-accent-warm);
+  opacity: 0.72;
 }
