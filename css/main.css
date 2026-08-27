@@ -2287,3 +2287,18 @@ audio {
   padding: 10px;
   border-bottom: 0.5px solid var(--color-border);
 }
+
+/* Inline links inside the hero paragraph */
+.hero-sub a {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--color-accent-warm) 55%, transparent);
+  transition: color var(--transition-base), text-decoration-color var(--transition-base);
+}
+
+.hero-sub a:hover {
+  color: var(--color-accent-warm);
+  text-decoration-color: var(--color-accent-warm);
+}
